@@ -34,18 +34,27 @@ Code directory: [javascript1-1.html](https://github.com/SteveZhao13/Huawei_Class
     ```
 
 * JS Variables
-    * How to declare a variable in JS: Use `var` key word
+    * How to declare a variable in JS: Use `var` key-word
         ```javascript
         var name = 'Steve Zhao';
         console.log(name);
         var age = 24；
         console.log(age);
         ```
+        
+    * After ECMAScript 2015, a new key-word to declare a variable in JS: `let` key-word
+        ```javascript
+        for (let i = 0; i < 13; i++) {
+            // 'i' is only accessible within this block
+        } 
+        ```
 > **Notes:** 
 >
 > * If a variable is <u>declared but NOT initialized</u>, then it will show `undefined` in the console log. However, if a variable is <u>NOT declared and initialized</u> directly, it will pass and show `the correct value`
 >
 > * Dollar Sign (`$`) and Underscore (`_`) can be used in the beginning of an variable
+> 
+> * `let` key-word is more like a variable in C/C++ language, it has block scope (块级作用域), which means it only takes affect within certain scope, a.k.a within a block defined by `{}`
 
 * JS Data Types
     * Number - 12, 3.14, etc. (default value: 0)
@@ -69,12 +78,37 @@ Code directory: [javascript1-1.html](https://github.com/SteveZhao13/Huawei_Class
     * Boolean - false, true (default value: false)
     * String - "this is a string" (default value: "")
     
-    > **Notes:** We can use `\` as Escape Character in JS. For example, `\n` means a new line, `\t` means a indentation, `\b` means a blank
-    
-    // chapter 26
+    > **Notes:**
+    > 
+    > * Use `\` as Escape Character in JS. For example, `\n` means a new line, `\t` means a indentation, `\b` means a blank
+    >
+    > * Use `.length` to get the length of a string variable
+    > ```javascript
+    > var str = 'this is a string variable';
+    > console.log(str.length); // output the length of the 'str' variable
+    > ```
+    > 
+    > * There are other functions of string variables. Use `.search()` and `.indexOf()` to find the index of certain sub-string
+    > ```javascript
+    > var str = 'this is a string variable';
+    > var pos_1 = str.indexOf('is'); // return 2
+    > var pos_2 = str.search('string'); // return 10
+    > ```
+    > * Use `+` to concatenate two string variables. As long as there is one **String** variable, the other variables will be seen as strings as well when using `+` to concatenate
     
     * Undefined - undefined (default value: undefined)
     * Null - null (default value: null)
-    * Object
+    * Object (Object is **complex data type**, the above 5 data types are all **simple data types**)
     
-> **Note:** JS has dynamic data types, which means that the same variable can be used to hold different data types
+> **Note:** JS has dynamic data types, which means that the same variable can be used to hold different data types. Actual data type of a variable is defined when the variable is given a certain kind of data
+
+> **Note:** Use `typeof` to get the data type of a certain variable
+> ```javascript
+> var num = 13, str = 'test', flag = true;
+> console.log(typeof num); // output is 'number'
+> console.log(typeof str); // output is 'string'
+> console.log(typeof flag); // output is 'boolean'
+> ```
+
+
+// chapter 31

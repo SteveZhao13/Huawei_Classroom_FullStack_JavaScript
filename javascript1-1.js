@@ -13,8 +13,8 @@ console.log(myName);
 
 /* Use prompt to store a uer input and use alert to output it */
 var age = prompt('Please input your age');
-console.log('input variable age = ' + age);
-alert('User age is: '+ age);
+console.log('Your age is: ' + age);
+alert('User input is: '+ age);
 
 /* Data Type - Number */
 // will represent octal number
@@ -38,4 +38,5 @@ console.log(isNaN(numTest));
 console.log(isNaN(strTest));
 
 /* Data Type - String */
-alert('this is a string\nwe can use "escape character" to represent special characters')
+var str = 'this is a string\nwe can use "escape character" to represent special characters'
+console.log(str);
