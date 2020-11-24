@@ -249,6 +249,66 @@ console.log('Alert as an Output Statemtent');
 
 ## Chapter 3
 
-### 3-1: JS Array and Function
+### 3-1: JS Array
 
-// chapter 4-1
+* How to create an array:
+    1. Using `[]`
+        ```javascript
+        var arr_1 = []; // create an empty array
+        var arr_2 = ['test1', 2, true]; // create an array with initial values
+        ```
+    2. Using the JS Keyword `new`
+        ```javascript
+        var arr_1 = new Array(); // create an empty array
+        var arr_2 = new Array('test1', 2, true); // create an empty array with initial values
+        ```
+        
+> **Note:** To get the length of an array, use `.length` property
+> ```javascript
+> var arr = new Array(1, 2, 3);
+> console.log(arr.length); // will return 3 which is the length of the array
+> ```
+
+* How to add new elements in an array
+    1. Change `.length` to a larger value, and then assign new elements
+    2. Add new elements directly using `[]` with a unused index
+        ```javascript
+        var fruits = ['Apple', 'Mango'];
+        fruits[fruits.length] = 'Lemon';
+        ```
+    3. Use array `.push()` method
+
+* Array methods
+    * `.toString()`: convert an array to a string of (comma separated) array values
+    * `.join('sep')`: similar to `toString()` method, but can specify the separator
+    * `.push('value')`: add an element to the end of an array
+    * `.unshift('value')`: add an element to the beginning of an array
+    * `.pop()`: remove the last element of an array
+    * `.shift()`: remove the first element of an array
+    * `.concat(arr2)`: return a new array by concatenating existing arrays
+    * `.forEach(fun)`: call the specified function (callback function) once for each array element to iterate through the array
+    * `.sort()`: sort an array alphabetically
+    
+    > **Note:** `.sort()` method sort an array alphabetically, not numerically. If we want to use `.sort()` method to perform numeric sort, we should use the following trick:
+    > ```javascript
+    > var points = [40, 100, 1, 5, 25, 10];
+    > // will sort points array numerically (ascending order)
+    > points.sort(function(a, b){return a - b});
+    > // will sort points array numerically (descending order)
+    > points.sort(function(a, b){return b - a});
+    > ```
+
+### 3-2: JS Function
+
+* Declare a function: Use `function` key word
+    ```javascript
+    function fun(argv_0, argv_1) {
+        // function content
+        return ret_value;
+    }
+    ```
+> **Note:** Don't need to explicitly declare the return type of the function or the types of input parameters like other languages like C/C++
+
+> **Note:** Counts of parameters(形参) and arguments(实参) could be different. If parameters are more than arguments, then the extra parameters will be the value of `undefined`; if arguments are more than parameters, the extra arguments will be ignored
+
+// chapter 5-1
