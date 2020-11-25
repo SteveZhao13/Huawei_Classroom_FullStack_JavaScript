@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Function</title>
+</head>
+<body>
+    <script>
+        /* getMax() function */
+        // getMax() function is able to get the maximum values for any number of numbers
+        function getMax() {
+            var max = arguments[0];
+            for (var i = 1; i < arguments.length; i++) {
+                if (max < arguments[i]) {
+                    max = arguments[i];
+                }
+            }
+            return max;
+        }
+        // call the getMax() function
+        var ret1 = getMax(1,2,5,4,10,66,30);
+        var ret2 = getMax(90,13,67,58,26);
+        var ret3 = getMax(1,2,3,4,5,6,7,8,9,10,15,50,38);
+        console.log('ret1 value: ' + ret1);
+        console.log('ret2 value: ' + ret2);
+        console.log('ret3 value: ' + ret3);
+
+        /* reverse a array */
+        function reverseArray(arr) {
+            var arr_new = [];
+            for (var i = arr.length - 1; i >= 0; i--) {
+                // use arr_new.length as index to add elements into the new array
+                arr_new[arr_new.length] = arr[i];
+            }
+            return arr_new;
+        }
+        // call reverseArray() function
+        var ret4 = reverseArray([1,2,3,4,5,6,7]);
+        var ret5 = reverseArray([4,7,8,9,0,3]);
+        console.log('ret4 value: ' + ret4);
+        console.log('ret5 value: ' + ret5);
+    </script>
+</body>
+</html>

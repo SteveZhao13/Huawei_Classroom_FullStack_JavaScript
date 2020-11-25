@@ -46,7 +46,7 @@ console.log('Alert as an Output Statemtent');
     console.log(age);
     ```
         
-* After ECMAScript 2015, a new key-word to declare a variable in JS: `let` key-word
+* After ECMAScript 2015 (ES6), a new key-word to declare a variable in JS: `let` key-word
     ```javascript
     for (let i = 0; i < 13; i++) {
         // 'i' is only accessible within this block
@@ -288,27 +288,106 @@ console.log('Alert as an Output Statemtent');
     * `.concat(arr2)`: return a new array by concatenating existing arrays
     * `.forEach(fun)`: call the specified function (callback function) once for each array element to iterate through the array
     * `.sort()`: sort an array alphabetically
-    
-    > **Note:** `.sort()` method sort an array alphabetically, not numerically. If we want to use `.sort()` method to perform numeric sort, we should use the following trick:
-    > ```javascript
-    > var points = [40, 100, 1, 5, 25, 10];
-    > // will sort points array numerically (ascending order)
-    > points.sort(function(a, b){return a - b});
-    > // will sort points array numerically (descending order)
-    > points.sort(function(a, b){return b - a});
-    > ```
+
+> **Note:** `.sort()` method sort an array alphabetically, not numerically. If we want to use `.sort()` method to perform numeric sort, we should use the following trick:
+> ```javascript
+> var points = [40, 100, 1, 5, 25, 10];
+> // will sort points array numerically (ascending order)
+> points.sort(function(a, b){return a - b});
+> // will sort points array numerically (descending order)
+> points.sort(function(a, b){return b - a});
+> ```
 
 ### 3-2: JS Function
 
-* Declare a function: Use `function` key word
+Code directory: [javascript3-2.html](https://github.com/SteveZhao13/Huawei_Classroom_FullStack_JavaScript/blob/master/javascript3-2.html)
+
+* Declare a function
+    * Use `function` key word
+        ```javascript
+        function fun(parm_0, parm_1) {
+            // function content
+            return ret_value;
+        }
+        ```
+    > **Note:** Don't need to explicitly declare the return type of the function or the types of input parameters like other languages like C/C++
+
+    > **Note:** Counts of parameters(形参) and arguments(实参) could be different. If parameters are more than arguments, then the extra parameters will be the value of `undefined`; if arguments are more than parameters, the extra arguments will be ignored
+    
+    * Use a function expression (also called `anonymous function`)
+        ```javascript
+        var ret = function(parm_0, parm_1) {
+            return parm_0 + parm_1;
+        };
+        console.log(ret);
+        ```
+        
+    > **Note:** Anonymous functions stored in variables and they do not need function names; Remember to end with a semicolon (`,`) because it is a part of an executable statement; Often used when a function is only useful at one certain place
+    
+* Get all the arguments from calling a function: Use `arguments` key word
+    * When we don't know how many arguments will be passed into a function, we can ignore the declaration of the parameters. Instead, we can use `arguments` key word to get all arguments
+    * `arguments` is a build-in object
+    * `arguments` object is a pseudo-array
+        1. it has `.length` property
+        2. it can be accessed with index
+        3. however, it doesn't have array methods like pop() and push()
+    * How to use `arguments` object
+        ```javascript
+        function fun() {
+            // within a function, we can use arguments key word
+            for (var i = 0; i < arguments.length; i++) {
+                console.log(arguments[i]);
+                // or do any actions with it
+            }
+        }
+        ```
+    
+* Local and global variables
+    * Local variables are defined within a `function`; global variables are defined outside a function but inside a `<script>` tag or a js file
+    * Local variables can not be accessed outside the function
+    * Variables declared using `var` key-word don't have block scope(块级作用域)
+    * Variables declared using `let` key-word have block scope(in JS ES6 version)
+    
+* JavaScript Hoisting (提升): Hoisting is JavaScript's default behavior of moving **declarations** to the top
+    * JavaScript Hoisting consists of `variable hoisting`(变量提升) and `function hoisting`(函数提升)
+    * Because of hoisting in JS, a variable or a function can be declared after it has been used
+    * `var` and `function` will be hoisted, function expression won't
+    
     ```javascript
-    function fun(argv_0, argv_1) {
+    /* use the variable 'x' first, then declare */
+    x = 13;
+    console.log(x);
+    var x;
+    /* use the function 'fun' first, then declare*/
+    fun();
+    function fun() {
         // function content
-        return ret_value;
+        return ret;
     }
     ```
-> **Note:** Don't need to explicitly declare the return type of the function or the types of input parameters like other languages like C/C++
+    
+    > **Note:** only **declaration** will be hoisted, **initialization** won't
+    
+    > **Tips and Testing Points 面试试题**
+    >
+    > Question: What will be the result of the following code
+    > ```javascript
+    > fn1();
+    > console.log(c); // output 9
+    > console.log(b); // output 9
+    > console.log(a); // error because a is a local variable within fn1() function
+    > // declaration of function fn1() will be hoisted above to the top
+    > function fn1() {
+    >     var a = b = c = 9;
+    >     // above code is equal to: var a=9; b=9; c=9;
+    >     // b and c are global variables cause they are not declared using 'var' key-word
+    >     console.log(a); // output 9
+    >     console.log(b); // output 9
+    >     console.log(c); // output 9
+    > }
+    > ```
+    > Answer: output will be 9, 9, 9, 9, 9, error(variable undefined)
+    
+    
 
-> **Note:** Counts of parameters(形参) and arguments(实参) could be different. If parameters are more than arguments, then the extra parameters will be the value of `undefined`; if arguments are more than parameters, the extra arguments will be ignored
-
-// chapter 5-1
+// chapter 5-18
