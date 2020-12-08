@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Object</title>
+</head>
+<body>
+    <script>
+        /* using constructor to create object */
+        function ObjTemp(para_1, para_2) {
+            this.userName = para_1;
+            this.userAge = para_2;
+            this.sayHi = function(para_3) {
+                console.log(para_3)
+            };
+        }
+        // initial objects using the above constructor
+        // don't need to pass parameters for methods, only for properties
+        var obj_1 = new ObjTemp('steve', 25);
+        var obj_2 = new ObjTemp('sophie', 24);
+        
+        // look at properties
+        console.log(obj_1.userName);
+        console.log(obj_1.userAge);
+        console.log(obj_2['userName']);
+        console.log(obj_2['userAge']);
+        
+        // call methods and pass arguments
+        obj_1.sayHi('Hi from Steve');
+        obj_2.sayHi('Hi from Sophie');
+
+        /* traverse properties or methods in an object */
+        for (var key in obj_1) {
+            console.log(key)
+            console.log(obj_1[key])
+        }
+    </script>
+</body>
+</html>

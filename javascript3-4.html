@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS Build-in Object</title>
+</head>
+<body>
+    <script>
+        /* Date object */
+        // write a function to create a count down
+        function countDown(when) {
+            // get the interval between the current time stamp and the target time stamp
+            var curTime = +new Date();
+            var targetTime = +new Date(when);
+            var interval = (targetTime - curTime)/1000;
+            
+            // convert between time stamp and actual time(day+hour+minute+sec)
+            var day = parseInt(interval/60/60/24);
+            var hour = parseInt(interval/60/60%24);
+            var minute = parseInt(interval/60%60);
+            var second = parseInt(interval%60);
+
+            // make it prettier
+            day = day < 10 ? '0' + day: day;
+            hour = hour < 10 ? '0' + hour: hour;
+            minute = minute < 10 ? '0' + minute: minute;
+            second = second < 10 ? '0' + second: second;
+            
+            // return count down string
+            return 'CountDown Until ' + when + ': ' + day + ' Days ' + hour + ' Hours ' + minute + ' Minutes ' + second + ' Seconds';
+        }
+        
+        // log count down
+        console.log(countDown('2020-11-28 00:00:00'));
+
+        /* Array object */
+        // write a function to remove dulplicate values in an array
+        function unique(input_array) {
+            var unique_array = [];
+            for (var i = 0; i < input_array.length; i++) {
+                if (unique_array.indexOf(input_array[i]) == -1) {
+                    unique_array.push(input_array[i]);
+                }
+            }
+            return unique_array;
+        }
+        var arr = [10, 20, 40, 20, 50, 60, 60, 70, 10, 40, 80];
+        console.log(unique(arr));
+
+        /* String Object */
+        // write a function to return the character which counts the most in a string
+        function maxCount(str) {
+            var dict = {}; // initial a empty object as a dictionary
+            for (var i = 0; i < str.length; i++) {
+                var c = str.charAt(i);
+                if (dict[c]) { // check if the object has this key, if the key exists, add 1 to its value 
+                    dict[c]++;
+                } else { // if the key doesn't exist, then initial the key with 1
+                    dict[c] = 1;
+                }
+            }
+            var max = 0;
+            var keyRet;
+            for (var key in dict) { // loop the dictionary and find the max value
+                if (dict[key] > max) {
+                    max = dict[key];
+                    keyRet = key;
+                }
+            }
+            console.log(dict);
+            return keyRet;
+        }
+        var str_test = 'aaabbbccccdddefyiagsdddaaa';
+        console.log(maxCount(str_test));
+    </script>
+</body>
+</html>

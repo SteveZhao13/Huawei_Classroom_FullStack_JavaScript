@@ -94,7 +94,7 @@ console.log('Alert as an Output Statemtent');
 > console.log(str.length); // output the length of the 'str' variable
 > ```
 > 
-> * There are other methods of string variables. Use `.search()` and `.indexOf()` to find the index of certain sub-string
+> * There are other methods of string variables. Use `.search()` and `.indexOf()` to find the index of certain substring
 > ```javascript
 > var str = 'this is a string variable';
 > var pos_1 = str.indexOf('is'); // return 2
@@ -261,6 +261,7 @@ console.log('Alert as an Output Statemtent');
         ```javascript
         var arr_1 = new Array(); // create an empty array
         var arr_2 = new Array('test1', 2, true); // create an empty array with initial values
+        var arr_3 = new Array(5); // create an array of length 5 but with empty elements
         ```
         
 > **Note:** To get the length of an array, use `.length` property
@@ -277,17 +278,32 @@ console.log('Alert as an Output Statemtent');
         fruits[fruits.length] = 'Lemon';
         ```
     3. Use array `.push()` method
+    
+* How to determine whether a var is an array or not
+    1. `instanceof` key-word
+        ```javascript
+        var arr = [];
+        console.log(arr instanceof Array); // will return true
+        ```
 
+    2. `Array.isArray()` method
+        ```javascript
+        var arr = [];
+        console.log(Array.isArray(arr)); // will return true
+        ```
+    
 * Array methods
     * `.toString()`: convert an array to a string of (comma separated) array values
     * `.join('sep')`: similar to `toString()` method, but can specify the separator
-    * `.push('value')`: add an element to the end of an array
+    * `.push('value')`: add an element to the end of an array (return value is the array length after adding new elements)
     * `.unshift('value')`: add an element to the beginning of an array
-    * `.pop()`: remove the last element of an array
+    * `.pop()`: remove the last element of an array (return value is the deleted element)
     * `.shift()`: remove the first element of an array
     * `.concat(arr2)`: return a new array by concatenating existing arrays
     * `.forEach(fun)`: call the specified function (callback function) once for each array element to iterate through the array
     * `.sort()`: sort an array alphabetically
+    * `.reverse()`: reverse the order of the elements in an array
+    * `.indexOf('value')`/`.lastIndexOf('value')`: return the index of a giving element in an array (the first index or the last one corresponding to method name; if the element not exists, return -1)
 
 > **Note:** `.sort()` method sort an array alphabetically, not numerically. If we want to use `.sort()` method to perform numeric sort, we should use the following trick:
 > ```javascript
@@ -388,6 +404,127 @@ Code directory: [javascript3-2.html](https://github.com/SteveZhao13/Huawei_Class
     > ```
     > Answer: output will be 9, 9, 9, 9, 9, error(variable undefined)
     
-    
+### 3-3: JS Object
 
-// chapter 5-18
+Code directory: [javascript3-3.html](https://github.com/SteveZhao13/Huawei_Classroom_FullStack_JavaScript/blob/master/javascript3-3.html)
+
+An object consists of `properties` and `methods`. Objects can contain many values which have different types.
+
+* How to create(define) an object
+    1. Using `{}` (object literal 对象字面量)
+        ```javascript
+        /* define an object */
+        var obj_sample = {
+            // properties - key:value
+            userName: 'steve',
+            userAge: 25,
+            // method - key:anonymous function
+            sayHi: function() {
+                console.log('Hi');
+            }
+        };
+        /* accessing an object */
+        console.log(obj_sample.userName); // obj.key
+        console.log(obj_sample['userAge']); // obj['key']
+        obj_sample.sayHi();
+        ```
+    
+    2. Using the JS Keyword `new`
+        ```javascript
+        var obj_sample = new Object(); // create an empty object
+        /* initialize object properties and methods*/
+        obj_sample.userName = 'steve';
+        obj_sample.userAge = 25;
+        obj_sample.sayHi = function() {
+            console.log('Hi');
+        };
+        ```
+    
+    3. Using an object `constructor`(构造函数)
+        ```javascript
+        // create a constructor
+        function ObjTemp(para_1, para_2) {
+            this.userName = para_1;
+            this.userAge = para_2;
+            this.sayHi = function(para_3) {
+                console.log(para_3)
+            };
+        }
+        // initial objects using the above constructor
+        var obj_1 = new ObjTemp('steve', 25);
+        var obj_2 = new ObjTemp('sophie', 24);
+        // call methods
+        obj_1.sayHi('Hi from Steve');
+        obj_2.sayHi('Hi from Sophie');
+        ```
+    > **Note:** Usually constructors start with **Upper Case**
+    
+    > **Note:** `this` refers to a object itself. `this` will become the actual values when `new` is called to create a new object
+    
+* How to **traverse** properties/methods in an object: `for ... in ...`
+    ```javascript
+    for (var key in obj_sample) {
+        console.log(key); // print out keys in an object
+        console.log(obj_sample[key]); // print out values for corresponding keys
+    }
+    ```
+    
+### 3-4: JS Standard Build-in Objects
+
+**Reference:** [MDN Document on build-in objects](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects)
+
+Code directory: [javascript3-4.html](https://github.com/SteveZhao13/Huawei_Classroom_FullStack_JavaScript/blob/master/javascript3-4.html)
+
+* `Math`: `Math` is not a constructor, so we don't need to use `new` to create it, just use it directly
+    ```javascript
+    Math.PI // π value 
+    Math.E // exp value
+    Math.max(value_1, value_2, value_3); // 最大值
+    Math.abs(value) // 绝对值
+    Math.floor(value) // 向上取整
+    Math.ceil(value) // 向下取整
+    Math.round(value) // 四舍五入
+    Math.random() // return a random value x ∈ [0,1)
+    ```
+
+    > **Note:** if we want to return a random value between two values, we can use the following `getRandomArbitrary()` function; if we want to return a random integer between two values inclusively, we can use the following  `getRandomIntInclusive()` function
+    > ```javascript
+    > function getRandomArbitrary(min, max) {
+    >     return Math.random() * (max - min) + min;
+    > }
+    > function getRandomIntInclusive(min, max) {
+    >     return Math.floor(Math.random() * (max - min + 1) + min);
+    > }
+    > ```
+
+* `Date`: use `new` to create a date object before using it
+    ```javascript
+    var date = new Date();
+    var date_1 = new Date('1995-12-10 03:24:05');
+    var date_2 = new Date(1995, 12, 10, 3, 24, 5); // the month is 0-indexed
+    date.getFullYear(); // getMonth(), getDate(), getDay()
+    date.getHours(); // getMinutes(), getSeconds()
+    date.getTime(); // or Date.now() 得到时间戳
+    ```
+    
+    > **Note:** `.getMonth()` method will return month from 0-11; `getDay()` method will return weekdays where Sun is 0 and Sat is 6
+
+* `Array`: refer to [3-1 JS Array](https://github.com/SteveZhao13/Huawei_Classroom_FullStack_JavaScript#3-1-js-array)
+
+* `String`: when creating a string using `''`, JS will automatically change it to a `String` object
+    * `.indexOf('value', strat_index)`: return the index of the value in a string, starting at start_index(if not provided, starting from index 0)
+    * `charAt(index)`: return the character which is at the index place of a string (same as str[i])
+    * `.charCodeAt(index)`: return the ASCII code of the character at index
+    * `.concat(str1, str2)`: concatenate strings
+    * `.substr(start_index, substring_length)`: get a sub-string from the first parameter and the sub-string length is the second parameter
+    * `.replace(src_char, dest_char)`: replace the first appearance of the src_char character with dest_str in a string
+    * `.split('sep')`: change a string separated by 'sep' into an array
+    * `.toUpperCase()`/`.toLowerCase()`: change lower/upper case
+
+    > **Note:** When we change the content of a string, JS will **create a new memory place** to store the new content of a string, and still keep the old string in memory. Therefore, don't always change string content or concatenate strings
+
+> **Note:** JS has two data types, simple data type (like string, number, boolean, etc.) and complex data type (like `Object`, `Array`, `Date`, etc.)
+> * simple data types: directly store as values in stack
+> * complex data types: store as addresses in stack, where the addresses are pointing to actual values stored in heap 
+
+> **Note:** Base on the last "Note", when pass a complex data type variable into a function, the address of the variable is passed into the function. Therefore, <b><i>any changes made by the function will take effect on the variable even outside the function</i></b>. However, a simple data type variable won't be changed by function actions
