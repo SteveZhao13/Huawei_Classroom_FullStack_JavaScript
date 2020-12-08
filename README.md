@@ -513,7 +513,7 @@ Code directory: [javascript3-4.html](https://github.com/SteveZhao13/Huawei_Class
 
 * `String`: when creating a string using `''`, JS will automatically change it to a `String` object
     * `.indexOf('value', strat_index)`: return the index of the value in a string, starting at start_index(if not provided, starting from index 0)
-    * `charAt(index)`: return the character which is at the index place of a string (same as str[i])
+    * `.charAt(index)`: return the character which is at the index place of a string (same as str[i])
     * `.charCodeAt(index)`: return the ASCII code of the character at index
     * `.concat(str1, str2)`: concatenate strings
     * `.substr(start_index, substring_length)`: get a sub-string from the first parameter and the sub-string length is the second parameter
